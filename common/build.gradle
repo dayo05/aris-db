@@ -38,6 +38,6 @@ processResources {
 
 // --- Auto-Generated Settings ---
 ksp {
-    arg("package_name", "com.example.app.lua.glue")
-    arg("export_doc", "false")
+    arg("package_name", "me.ddayo.arisdb.lua.glue")
+    arg("export_doc", "true")
 }

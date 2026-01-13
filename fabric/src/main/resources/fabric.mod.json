@@ -15,14 +15,29 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.example.app.arisextension.fabric.ArisextensionFabric::init"
+      "me.ddayo.arisdb.fabric.ArisdbFabric"
     ],
     "client": [
-      "com.example.app.arisextension.client.fabric.ArisextensionFabricClient::init"
+      "me.ddayo.arisdb.client.fabric.ArisdbFabricClient"
+    ],
+    "aris-init": [
+      "me.ddayo.arisdb.engine.fabric.ArisdbFabricInitFunctionExtension"
+    ],
+    "aris-client-init": [
+      "me.ddayo.arisdb.engine.client.fabric.ArisdbFabricClientInitFunctionExtension"
+    ],
+    "aris-client-main": [
+      "me.ddayo.arisdb.engine.client.fabric.ArisdbFabricClientMainFunctionExtension"
+    ],
+    "aris-game": [
+      "me.ddayo.arisdb.engine.fabric.ArisdbFabricInGameFunctionExtension"
+    ],
+    "aris-client-game": [
+      "me.ddayo.arisdb.engine.client.fabric.ArisdbFabricClientInGameFunctionExtension"
     ]
   },
   "mixins": [
-    "${mod_id}.mixins.json"
+    "arisdb.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.16.14",

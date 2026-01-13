@@ -14,7 +14,7 @@ plugins {
 }
 
 // --- Auto-Generated Settings ---
-rootProject.name = 'aris-extension'
+rootProject.name = 'aris-db'
 
 includeBuild('aris-mc') {
     dependencySubstitution {
