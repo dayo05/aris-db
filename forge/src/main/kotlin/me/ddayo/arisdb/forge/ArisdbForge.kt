@@ -1,7 +1,7 @@
 package me.ddayo.arisdb.forge
 
 import me.ddayo.aris.forge.ArisForge
-import me.ddayo.arisdb.Arisdb
+import me.ddayo.arisdb.ArisDB
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.event.lifecycle.FMLConstructModEvent
 import thedarkcolour.kotlinforforge.forge.MOD_BUS
@@ -11,7 +11,7 @@ import me.ddayo.arisdb.lua.glue.ArisdbClientInitProviderGenerated
 import me.ddayo.arisdb.lua.glue.ArisdbClientMainProviderGenerated
 import me.ddayo.arisdb.lua.glue.ArisdbClientInGameProviderGenerated
 
-@Mod(Arisdb.MOD_ID)
+@Mod(ArisDB.MOD_ID)
 class ArisdbForge {
     init {
         MOD_BUS.addListener { it: FMLConstructModEvent ->
@@ -39,6 +39,6 @@ class ArisdbForge {
                 ArisdbClientInGameProviderGenerated.initEngine(it)
             }
         }
-        Arisdb.init()
+        ArisDB.init()
     }
 }

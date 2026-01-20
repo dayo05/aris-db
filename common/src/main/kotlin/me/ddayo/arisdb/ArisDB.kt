@@ -1,6 +1,6 @@
 package me.ddayo.arisdb
 
-object Arisdb {
+object ArisDB {
     const val MOD_ID = "arisdb"
     fun init() {}
 }
