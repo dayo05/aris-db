@@ -11,7 +11,7 @@ dependencies {
     // which get remapped to the correct annotations on each platform.
     // Do NOT use other classes from Fabric Loader.
     modImplementation "net.fabricmc:fabric-loader:$rootProject.fabric_loader_version"
-    modCompileOnly "me.ddayo:aris-common"
+    modCompileOnly files(rootProject.file('aris-mc/common/build/libs/aris-1.1.0.jar'))
     compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
     ksp "me.ddayo:ap"
     implementation "me.ddayo:aris.luagen"
@@ -23,7 +23,7 @@ repositories {
     mavenCentral()
 }
 kotlin {
-    jvmToolchain(17)
+    jvmToolchain(21)
 }
 
 processResources {

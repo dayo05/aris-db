@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlin_version = '2.0.20'
+    ext.kotlin_version = '2.3.0'
     repositories {
         mavenCentral()
     }
@@ -40,11 +40,7 @@ subprojects {
     }
 
     repositories {
-        // Add repositories to retrieve artifacts from in here.
-        // You should only use this when depending on other mods because
-        // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
-        // See https://docs.gradle.org/current/userguide/declaring_repositories.html
-        // for more information about repositories.
+        maven { url "https://maven.neoforged.net/releases/" }
     }
 
     dependencies {
@@ -61,7 +57,7 @@ subprojects {
     }
 
     tasks.withType(JavaCompile).configureEach {
-        it.options.release = 17
+        it.options.release = 21
     }
 
     // Configure Maven publishing.
@@ -89,5 +85,5 @@ dependencies {
 
 }
 kotlin {
-    jvmToolchain(8)
+    jvmToolchain(21)
 }

@@ -1,8 +1,8 @@
-package me.ddayo.arisdb.client.forge
+package me.ddayo.arisdb.client.neoforge
 
 import me.ddayo.arisdb.client.ArisdbClient
 
-object ArisdbForgeClient {
+object ArisdbNeoForgeClient {
     fun init() {
         ArisdbClient.init()
     }

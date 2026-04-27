@@ -34,7 +34,7 @@ dependencies {
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
 
-    modImplementation "me.ddayo:aris-fabric"
+    modImplementation files(rootProject.file('aris-mc/fabric/build/libs/aris-1.1.0.jar'))
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
     include "redis.clients:jedis:7.2.0"
 }
@@ -71,5 +71,5 @@ repositories {
     mavenCentral()
 }
 kotlin {
-    jvmToolchain(17)
+    jvmToolchain(21)
 }
