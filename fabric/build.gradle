@@ -36,7 +36,17 @@ dependencies {
 
     modImplementation files(rootProject.file('aris-mc/fabric/build/libs/aris-1.1.0.jar'))
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
-    include "redis.clients:jedis:7.2.0"
+    // Use `implementation include(...)` so libs are on the dev runtime classpath AND
+    // bundled (jar-in-jar) into the production mod jar.
+    implementation include("redis.clients:jedis:7.2.0")
+    // Jedis transitive deps (Loom's `include` is non-transitive); gson and slf4j-api are provided by Minecraft.
+    implementation include("org.apache.commons:commons-pool2:2.12.1")
+    implementation include("org.json:json:20250517")
+    implementation include("redis.clients.authentication:redis-authx-core:0.1.1-beta2")
+    implementation include("org.mongodb:mongodb-driver-sync:5.2.1")
+    implementation include("org.mongodb:mongodb-driver-core:5.2.1")
+    implementation include("org.mongodb:bson:5.2.1")
+    implementation include("org.mongodb:bson-record-codec:5.2.1")
 }
 
 processResources {

@@ -40,6 +40,16 @@ dependencies {
     shadowBundle project(path: ':common', configuration: 'transformProductionNeoForge')
     modImplementation files(rootProject.file('aris-mc/neoforge/build/libs/aris-1.1.0.jar'))
     implementation 'thedarkcolour:kotlinforforge-neoforge:5.11.0'
+
+    // DB drivers must be bundled here too — `include` is non-transitive, so list every dep.
+    include "redis.clients:jedis:7.2.0"
+    include "org.apache.commons:commons-pool2:2.12.1"
+    include "org.json:json:20250517"
+    include "redis.clients.authentication:redis-authx-core:0.1.1-beta2"
+    include "org.mongodb:mongodb-driver-sync:5.2.1"
+    include "org.mongodb:mongodb-driver-core:5.2.1"
+    include "org.mongodb:bson:5.2.1"
+    include "org.mongodb:bson-record-codec:5.2.1"
 }
 
 processResources {
