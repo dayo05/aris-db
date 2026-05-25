@@ -19,6 +19,14 @@ name = "build"
 command = "./gradlew"
 args = ["build"]
 
+# Publishes me.ddayo:aris-db-<loader>:<version> into the kei-managed
+# Maven repo. `$KEI_MAVEN_REPO` is exported by the kei service when it is
+# built with the `maven` feature; missing is harmless.
+[[steps]]
+name = "publish-maven"
+command = "bash"
+args = ["-c", "./gradlew publishToMavenLocal -Dmaven.repo.local=\"${KEI_MAVEN_REPO:-$HOME/.m2/repository}\""]
+
 [[steps]]
 name = "update-docs"
 command = "bash"
