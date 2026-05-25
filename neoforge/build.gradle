@@ -38,7 +38,7 @@ dependencies {
 
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionNeoForge')
-    modImplementation files(rootProject.file('aris-mc/neoforge/build/libs/aris-1.1.0.jar'))
+    modImplementation "me.ddayo:aris-neoforge:1.1.0-SNAPSHOT"
     implementation 'thedarkcolour:kotlinforforge-neoforge:5.11.0'
 
     // DB drivers must be bundled here too — `include` is non-transitive, so list every dep.

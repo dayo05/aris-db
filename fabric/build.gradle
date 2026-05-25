@@ -34,7 +34,7 @@ dependencies {
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
 
-    modImplementation files(rootProject.file('aris-mc/fabric/build/libs/aris-1.1.0.jar'))
+    modImplementation "me.ddayo:aris-fabric:1.1.0-SNAPSHOT"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
     // Use `implementation include(...)` so libs are on the dev runtime classpath AND
     // bundled (jar-in-jar) into the production mod jar.

@@ -2,18 +2,9 @@
 # The server-side kei.toml only knows the repo URL + secrets; everything
 # below — steps, artifact globs, nix overrides — is loaded from this file.
 
-# aris-db's subprojects depend on a pre-built aris-mc jar at
-# aris-mc/<loader>/build/libs/aris-<version>.jar (referenced via
-# `modImplementation files(...)`). aris-mc is a git submodule, so kei
-# builds it first inside its own directory (loom can't handle the
-# submodule via composite-build task paths), then builds aris-db from
-# the root.
-[[steps]]
-name = "build-aris-mc"
-command = "./gradlew"
-args = ["build"]
-cwd = "aris-mc"
-
+# aris-db consumes aris-mc + aris.luagen + ap from the kei Maven repo
+# (https://kei.ddayo.me/maven) via SNAPSHOT coordinates, so no
+# composite/submodule build needed here.
 [[steps]]
 name = "build"
 command = "./gradlew"

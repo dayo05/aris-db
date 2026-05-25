@@ -16,8 +16,6 @@ plugins {
 // --- Auto-Generated Settings ---
 rootProject.name = 'aris-db'
 
-includeBuild('aris-mc')
-
 include 'common'
 include 'fabric'
 include 'neoforge'
