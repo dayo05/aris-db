@@ -19,13 +19,26 @@ name = "build"
 command = "./gradlew"
 args = ["build"]
 
-# Publishes me.ddayo:aris-db-<loader>:<version> into the kei-managed
-# Maven repo. `$KEI_MAVEN_REPO` is exported by the kei service when it is
-# built with the `maven` feature; missing is harmless.
+# Publishes me.ddayo:aris-db-<loader> into the kei-managed Maven repo
+# as BOTH `<version>` (immutable — pinning) and `<version>-SNAPSHOT`
+# (mutable — gradle auto-refreshes downstream builds). Skipped when the
+# version already ends in -SNAPSHOT.
 [[steps]]
 name = "publish-maven"
 command = "bash"
-args = ["-c", "./gradlew publishToMavenLocal -Dmaven.repo.local=\"${KEI_MAVEN_REPO:-$HOME/.m2/repository}\""]
+args = [
+  "-c",
+  """
+set -euo pipefail
+TARGET="${KEI_MAVEN_REPO:-$HOME/.m2/repository}"
+VERSION="$(awk -F= '/^mod_version=/{gsub(/[[:space:]]/,"",$2); print $2}' gradle.properties)"
+./gradlew publishToMavenLocal -Dmaven.repo.local="$TARGET"
+case "$VERSION" in
+  *-SNAPSHOT) echo "version $VERSION is already a SNAPSHOT; skipping second publish" ;;
+  *) ./gradlew publishToMavenLocal "-Pmod_version=${VERSION}-SNAPSHOT" -Dmaven.repo.local="$TARGET" ;;
+esac
+""",
+]
 
 [[steps]]
 name = "update-docs"
