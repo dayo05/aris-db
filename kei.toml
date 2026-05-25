@@ -5,10 +5,14 @@
 # aris-db consumes aris-mc + aris.luagen + ap from the kei Maven repo
 # (https://kei.ddayo.me/maven) via SNAPSHOT coordinates, so no
 # composite/submodule build needed here.
+# `--refresh-dependencies` makes gradle re-check maven-metadata for the
+# SNAPSHOT deps from kei.ddayo.me/maven on every build. Without it,
+# gradle's default 24h SNAPSHOT cache window means a freshly-published
+# aris/aris.luagen update isn't visible to back-to-back kei builds.
 [[steps]]
 name = "build"
 command = "./gradlew"
-args = ["build"]
+args = ["build", "--refresh-dependencies"]
 
 # Publishes me.ddayo:aris-db-<loader> into the kei-managed Maven repo
 # as BOTH `<version>` (immutable — pinning) and `<version>-SNAPSHOT`
