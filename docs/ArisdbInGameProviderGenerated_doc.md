@@ -11,6 +11,7 @@
  @param func (channel, message) -> void
 ```
 ## aris.game.redis.publish(key: string, value: string) -> number
+## aris.game.redis.drain_subscriptions(maxMessages: number) -> number
 ## aris.game.mongo.collection(name: string) -> LuaMongoCollection
 
 
