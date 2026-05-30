@@ -14,6 +14,16 @@ object ArisDBInitFunction {
 @LuaProvider(ArisDBInitFunction.PROVIDER, library = "aris.init.redis")
 object ArisDBRedisInitFunction {
     var jedis: RedisClient? = null
+        private set
+
+    private var config: RedisConfig? = null
+
+    private data class RedisConfig(
+        val server: String,
+        val port: Int,
+        val user: String,
+        val password: String
+    )
 
     @LuaFunction("redis_init")
     fun redisInit(server: String, port: Int, onlyDedicatedServer: Boolean) {
@@ -23,10 +33,18 @@ object ArisDBRedisInitFunction {
     @LuaFunction("redis_init_auth")
     fun redisInitWithAuth(server: String, port: Int, user: String, password: String, onlyDedicatedServer: Boolean) {
         if(onlyDedicatedServer && !EngineHelper.isDedicatedServer()) return
-        jedis = if (password.isEmpty()) {
-            RedisClient.create(server, port)
+        ArisDBRedisInGameFunction.stopSubscribers()
+        jedis?.close()
+        config = RedisConfig(server, port, user, password)
+        jedis = createClient()
+    }
+
+    fun createClient(): RedisClient {
+        val c = config ?: throw IllegalStateException("Redis is not initialized")
+        return if (c.password.isEmpty()) {
+            RedisClient.create(c.server, c.port)
         } else {
-            RedisClient.create(server, port, user.ifEmpty { null }, password)
+            RedisClient.create(c.server, c.port, c.user.ifEmpty { null }, c.password)
         }
     }
 }

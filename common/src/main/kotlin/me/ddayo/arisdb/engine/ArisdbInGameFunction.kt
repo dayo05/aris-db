@@ -8,6 +8,9 @@ import me.ddayo.aris.luagen.LuaProvider
 import me.ddayo.arisdb.lua.glue.ArisdbInGameProviderGenerated
 import org.bson.Document
 import redis.clients.jedis.JedisPubSub
+import java.util.concurrent.ConcurrentLinkedQueue
+import java.util.concurrent.CopyOnWriteArrayList
+import java.util.concurrent.atomic.AtomicBoolean
 
 @LuaProvider(ArisdbInGameFunction.PROVIDER)
 object ArisdbInGameFunction {
@@ -17,6 +20,23 @@ object ArisdbInGameFunction {
 @LuaProvider(ArisdbInGameFunction.PROVIDER, library = "aris.game.redis")
 object ArisDBRedisInGameFunction {
     val redis get() = ArisDBRedisInitFunction.jedis!!
+
+    private data class PendingMessage(
+        val func: LuaFunc,
+        val channel: String?,
+        val message: String?
+    )
+
+    private class RedisSubscription(
+        val channel: String,
+        val pubSub: JedisPubSub,
+        val active: AtomicBoolean,
+        val thread: Thread
+    )
+
+    private val pendingMessages = ConcurrentLinkedQueue<PendingMessage>()
+    private val subscriptions = CopyOnWriteArrayList<RedisSubscription>()
+
     @LuaFunction
     fun set(key: String, value: String) = redis.set(key, value)
 
@@ -42,16 +62,61 @@ object ArisDBRedisInGameFunction {
      */
     @LuaFunction
     fun subscribe(key: String, func: LuaFunc) {
-        redis.subscribe(object: JedisPubSub() {
+        val active = AtomicBoolean(true)
+        val pubSub = object: JedisPubSub() {
             override fun onMessage(channel: String?, message: String?) {
                 super.onMessage(channel, message)
-                func.callAsTask(channel, message)
+                if (active.get()) {
+                    pendingMessages.add(PendingMessage(func, channel, message))
+                }
             }
-        }, key)
+        }
+        val thread = Thread {
+            ArisDBRedisInitFunction.createClient().use { subscriber ->
+                try {
+                    subscriber.subscribe(pubSub, key)
+                } catch (e: Exception) {
+                    if (active.get()) {
+                        e.printStackTrace()
+                    }
+                } finally {
+                    active.set(false)
+                }
+            }
+        }
+        val subscription = RedisSubscription(key, pubSub, active, thread)
+        subscriptions.add(subscription)
+        thread.name = "arisdb-redis-subscribe-$key"
+        thread.isDaemon = true
+        thread.start()
     }
 
     @LuaFunction
     fun publish(key: String, value: String) = redis.publish(key, value)
+
+    @LuaFunction("drain_subscriptions")
+    fun drainSubscriptions(maxMessages: Int): Int {
+        val limit = maxMessages.coerceAtLeast(0)
+        var drained = 0
+        while (drained < limit) {
+            val message = pendingMessages.poll() ?: break
+            message.func.callAsTask(message.channel, message.message)
+            drained++
+        }
+        return drained
+    }
+
+    fun stopSubscribers() {
+        subscriptions.forEach {
+            it.active.set(false)
+            try {
+                it.pubSub.unsubscribe()
+            } catch (_: Exception) {
+            }
+        }
+        subscriptions.clear()
+        pendingMessages.clear()
+    }
 }
 
 @LuaProvider(ArisdbInGameFunction.PROVIDER, library = "aris.game.mongo")
