@@ -116,7 +116,7 @@
       "name": "subscribe",
       "luaName": "redis.subscribe",
       "i18nKey": "redis.subscribe(string,function)",
-      "params": [{"name": "key", "type": "string"}, {"name": "func", "type": "function"}],
+      "params": [{"name": "key", "type": "string"}, {"name": "func", "type": "function", "callback": {"params": [{"name": "channel", "type": "string"}, {"name": "message", "type": "string"}], "returns": "nil"}, "callbacks": [{"params": [{"name": "channel", "type": "string"}, {"name": "message", "type": "string"}], "returns": "nil"}]}],
       "returns": "nil",
       "description": "@param func (channel, message) -> void"
     },
