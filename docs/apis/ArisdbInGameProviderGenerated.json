@@ -1,0 +1,282 @@
+{
+  "version": 1,
+  "name": "ArisdbInGameProviderGenerated",
+  "generatedClassName": "ArisdbInGameProviderGenerated",
+  "contexts": ["game-mc"],
+  "types": [
+    {
+      "name": "kotlin.collections.Map",
+      "displayName": "Map",
+      "description": null,
+      "extends": []
+    },
+    {
+      "name": "me.ddayo.arisdb.engine.LuaDocumentList",
+      "displayName": "LuaDocumentList",
+      "description": null,
+      "extends": []
+    },
+    {
+      "name": "me.ddayo.arisdb.engine.LuaMongoCollection",
+      "displayName": "LuaMongoCollection",
+      "description": null,
+      "extends": []
+    },
+    {
+      "name": "me.ddayo.arisdb.engine.LuaStringSet",
+      "displayName": "LuaStringSet",
+      "description": null,
+      "extends": []
+    }
+  ],
+  "functions": [
+    {
+      "kind": "function",
+      "namespace": "redis",
+      "name": "set",
+      "luaName": "redis.set",
+      "i18nKey": "redis.set(string,string)",
+      "params": [{"name": "key", "type": "string"}, {"name": "value", "type": "string"}],
+      "returns": "string",
+      "description": null
+    },
+    {
+      "kind": "function",
+      "namespace": "redis",
+      "name": "get",
+      "luaName": "redis.get",
+      "i18nKey": "redis.get(string)",
+      "params": [{"name": "key", "type": "string"}],
+      "returns": "string",
+      "description": null
+    },
+    {
+      "kind": "function",
+      "namespace": "redis",
+      "name": "lpush",
+      "luaName": "redis.lpush",
+      "i18nKey": "redis.lpush(string,string)",
+      "params": [{"name": "key", "type": "string"}, {"name": "value", "type": "string"}],
+      "returns": "number",
+      "description": null
+    },
+    {
+      "kind": "function",
+      "namespace": "redis",
+      "name": "rpush",
+      "luaName": "redis.rpush",
+      "i18nKey": "redis.rpush(string,string)",
+      "params": [{"name": "key", "type": "string"}, {"name": "value", "type": "string"}],
+      "returns": "number",
+      "description": null
+    },
+    {
+      "kind": "function",
+      "namespace": "redis",
+      "name": "lpop",
+      "luaName": "redis.lpop",
+      "i18nKey": "redis.lpop(string)",
+      "params": [{"name": "key", "type": "string"}],
+      "returns": "string",
+      "description": null
+    },
+    {
+      "kind": "function",
+      "namespace": "redis",
+      "name": "rpop",
+      "luaName": "redis.rpop",
+      "i18nKey": "redis.rpop(string)",
+      "params": [{"name": "key", "type": "string"}],
+      "returns": "string",
+      "description": null
+    },
+    {
+      "kind": "function",
+      "namespace": "redis",
+      "name": "sadd",
+      "luaName": "redis.sadd",
+      "i18nKey": "redis.sadd(string,string)",
+      "params": [{"name": "key", "type": "string"}, {"name": "value", "type": "string"}],
+      "returns": "number",
+      "description": null
+    },
+    {
+      "kind": "function",
+      "namespace": "redis",
+      "name": "smembers",
+      "luaName": "redis.smembers",
+      "i18nKey": "redis.smembers(string)",
+      "params": [{"name": "key", "type": "string"}],
+      "returns": "me.ddayo.arisdb.engine.LuaStringSet",
+      "description": null
+    },
+    {
+      "kind": "function",
+      "namespace": "redis",
+      "name": "subscribe",
+      "luaName": "redis.subscribe",
+      "i18nKey": "redis.subscribe(string,function)",
+      "params": [{"name": "key", "type": "string"}, {"name": "func", "type": "function"}],
+      "returns": "nil",
+      "description": "@param func (channel, message) -> void"
+    },
+    {
+      "kind": "function",
+      "namespace": "redis",
+      "name": "publish",
+      "luaName": "redis.publish",
+      "i18nKey": "redis.publish(string,string)",
+      "params": [{"name": "key", "type": "string"}, {"name": "value", "type": "string"}],
+      "returns": "number",
+      "description": null
+    },
+    {
+      "kind": "function",
+      "namespace": "redis",
+      "name": "drain_subscriptions",
+      "luaName": "redis.drain_subscriptions",
+      "i18nKey": "redis.drain_subscriptions(number)",
+      "params": [{"name": "maxMessages", "type": "number"}],
+      "returns": "number",
+      "description": null
+    },
+    {
+      "kind": "function",
+      "namespace": "mongo",
+      "name": "collection",
+      "luaName": "mongo.collection",
+      "i18nKey": "mongo.collection(string)",
+      "params": [{"name": "name", "type": "string"}],
+      "returns": "me.ddayo.arisdb.engine.LuaMongoCollection",
+      "description": null
+    }
+  ],
+  "methods": [
+    {
+      "kind": "method",
+      "ownerType": "me.ddayo.arisdb.engine.LuaStringSet",
+      "name": "size",
+      "i18nKey": "me.ddayo.arisdb.engine.LuaStringSet:size()",
+      "params": [],
+      "returns": "number",
+      "description": null
+    },
+    {
+      "kind": "method",
+      "ownerType": "me.ddayo.arisdb.engine.LuaStringSet",
+      "name": "contains",
+      "i18nKey": "me.ddayo.arisdb.engine.LuaStringSet:contains(string)",
+      "params": [{"name": "value", "type": "string"}],
+      "returns": "boolean",
+      "description": null
+    },
+    {
+      "kind": "method",
+      "ownerType": "me.ddayo.arisdb.engine.LuaStringSet",
+      "name": "get",
+      "i18nKey": "me.ddayo.arisdb.engine.LuaStringSet:get(number)",
+      "params": [{"name": "index", "type": "number"}],
+      "returns": "string",
+      "description": null
+    },
+    {
+      "kind": "method",
+      "ownerType": "me.ddayo.arisdb.engine.LuaStringSet",
+      "name": "to_table",
+      "i18nKey": "me.ddayo.arisdb.engine.LuaStringSet:to_table()",
+      "params": [],
+      "returns": "kotlin.collections.Map",
+      "description": null
+    },
+    {
+      "kind": "method",
+      "ownerType": "me.ddayo.arisdb.engine.LuaMongoCollection",
+      "name": "insert",
+      "i18nKey": "me.ddayo.arisdb.engine.LuaMongoCollection:insert(string)",
+      "params": [{"name": "documentJson", "type": "string"}],
+      "returns": "nil",
+      "description": null
+    },
+    {
+      "kind": "method",
+      "ownerType": "me.ddayo.arisdb.engine.LuaMongoCollection",
+      "name": "find_one",
+      "i18nKey": "me.ddayo.arisdb.engine.LuaMongoCollection:find_one(string)",
+      "params": [{"name": "queryJson", "type": "string"}],
+      "returns": "string",
+      "description": null
+    },
+    {
+      "kind": "method",
+      "ownerType": "me.ddayo.arisdb.engine.LuaMongoCollection",
+      "name": "find",
+      "i18nKey": "me.ddayo.arisdb.engine.LuaMongoCollection:find(string)",
+      "params": [{"name": "queryJson", "type": "string"}],
+      "returns": "me.ddayo.arisdb.engine.LuaDocumentList",
+      "description": null
+    },
+    {
+      "kind": "method",
+      "ownerType": "me.ddayo.arisdb.engine.LuaMongoCollection",
+      "name": "update",
+      "i18nKey": "me.ddayo.arisdb.engine.LuaMongoCollection:update(string,string)",
+      "params": [{"name": "queryJson", "type": "string"}, {"name": "updateJson", "type": "string"}],
+      "returns": "number",
+      "description": null
+    },
+    {
+      "kind": "method",
+      "ownerType": "me.ddayo.arisdb.engine.LuaMongoCollection",
+      "name": "delete",
+      "i18nKey": "me.ddayo.arisdb.engine.LuaMongoCollection:delete(string)",
+      "params": [{"name": "queryJson", "type": "string"}],
+      "returns": "number",
+      "description": null
+    },
+    {
+      "kind": "method",
+      "ownerType": "me.ddayo.arisdb.engine.LuaMongoCollection",
+      "name": "count",
+      "i18nKey": "me.ddayo.arisdb.engine.LuaMongoCollection:count(string)",
+      "params": [{"name": "queryJson", "type": "string"}],
+      "returns": "number",
+      "description": null
+    },
+    {
+      "kind": "method",
+      "ownerType": "me.ddayo.arisdb.engine.LuaMongoCollection",
+      "name": "drop",
+      "i18nKey": "me.ddayo.arisdb.engine.LuaMongoCollection:drop()",
+      "params": [],
+      "returns": "nil",
+      "description": null
+    },
+    {
+      "kind": "method",
+      "ownerType": "me.ddayo.arisdb.engine.LuaDocumentList",
+      "name": "size",
+      "i18nKey": "me.ddayo.arisdb.engine.LuaDocumentList:size()",
+      "params": [],
+      "returns": "number",
+      "description": null
+    },
+    {
+      "kind": "method",
+      "ownerType": "me.ddayo.arisdb.engine.LuaDocumentList",
+      "name": "get",
+      "i18nKey": "me.ddayo.arisdb.engine.LuaDocumentList:get(number)",
+      "params": [{"name": "index", "type": "number"}],
+      "returns": "string",
+      "description": null
+    },
+    {
+      "kind": "method",
+      "ownerType": "me.ddayo.arisdb.engine.LuaDocumentList",
+      "name": "to_table",
+      "i18nKey": "me.ddayo.arisdb.engine.LuaDocumentList:to_table()",
+      "params": [],
+      "returns": "kotlin.collections.Map",
+      "description": null
+    }
+  ]
+}

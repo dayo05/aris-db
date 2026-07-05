@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "name": "ArisdbInitProviderGenerated",
+  "generatedClassName": "ArisdbInitProviderGenerated",
+  "contexts": ["init-mc"],
+  "types": [
+
+  ],
+  "functions": [
+    {
+      "kind": "function",
+      "namespace": "redis",
+      "name": "redis_init",
+      "luaName": "redis.redis_init",
+      "i18nKey": "redis.redis_init(string,number,boolean)",
+      "params": [{"name": "server", "type": "string"}, {"name": "port", "type": "number"}, {"name": "onlyDedicatedServer", "type": "boolean"}],
+      "returns": "nil",
+      "description": null
+    },
+    {
+      "kind": "function",
+      "namespace": "redis",
+      "name": "redis_init_auth",
+      "luaName": "redis.redis_init_auth",
+      "i18nKey": "redis.redis_init_auth(string,number,string,string,boolean)",
+      "params": [{"name": "server", "type": "string"}, {"name": "port", "type": "number"}, {"name": "user", "type": "string"}, {"name": "password", "type": "string"}, {"name": "onlyDedicatedServer", "type": "boolean"}],
+      "returns": "nil",
+      "description": null
+    },
+    {
+      "kind": "function",
+      "namespace": "mongo",
+      "name": "mongo_init",
+      "luaName": "mongo.mongo_init",
+      "i18nKey": "mongo.mongo_init(string,string,boolean)",
+      "params": [{"name": "connectionString", "type": "string"}, {"name": "databaseName", "type": "string"}, {"name": "onlyDedicatedServer", "type": "boolean"}],
+      "returns": "nil",
+      "description": null
+    }
+  ],
+  "methods": [
+
+  ]
+}
