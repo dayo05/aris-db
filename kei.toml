@@ -14,6 +14,11 @@ name = "build"
 command = "./gradlew"
 args = ["build", "--refresh-dependencies"]
 
+[[steps]]
+name = "package-api-setup"
+command = "bash"
+args = ["scripts/package-api-setup.sh"]
+
 # Publishes me.ddayo:aris-db-<loader> into the kei-managed Maven repo
 # as BOTH `<version>` (immutable — pinning) and `<version>-SNAPSHOT`
 # (mutable — gradle auto-refreshes downstream builds). Skipped when the
@@ -71,4 +76,12 @@ suffix = ""
 
 [[artifacts]]
 pattern = "neoforge/build/libs/aris-*.jar"
+suffix = ""
+
+[[artifacts]]
+pattern = "build/aris-db-api-setup.7z"
+suffix = ""
+
+[[artifacts]]
+pattern = "build/aris-db-api-setup.7z.sha256"
 suffix = ""

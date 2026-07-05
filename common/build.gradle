@@ -43,4 +43,11 @@ processResources {
 ksp {
     arg("package_name", "me.ddayo.arisdb.lua.glue")
     arg("export_doc", "true")
+    arg("export_api_schema", "true")
+    arg("api_display_lang", "en|kr")
+    arg("api_contexts.ArisdbInitProviderGenerated", "init-mc")
+    arg("api_contexts.ArisdbInGameProviderGenerated", "game-mc")
+    arg("api_contexts.ArisdbClientMainProviderGenerated", "client-mc")
+    arg("api_contexts.ArisdbClientInitProviderGenerated", "client-init-mc")
+    arg("api_contexts.ArisdbClientInGameProviderGenerated", "client-game-mc")
 }
