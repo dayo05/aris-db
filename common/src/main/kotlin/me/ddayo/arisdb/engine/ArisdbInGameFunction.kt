@@ -2,9 +2,12 @@ package me.ddayo.arisdb.engine
 
 import com.mongodb.client.MongoCollection
 import me.ddayo.aris.luagen.ILuaStaticDecl
+import me.ddayo.aris.luagen.LuaCallback
+import me.ddayo.aris.luagen.LuaCallbackParam
 import me.ddayo.aris.luagen.LuaFunc
 import me.ddayo.aris.luagen.LuaFunction
 import me.ddayo.aris.luagen.LuaProvider
+import me.ddayo.aris.luagen.LuaType
 import me.ddayo.arisdb.lua.glue.ArisdbInGameProviderGenerated
 import org.bson.Document
 import redis.clients.jedis.JedisPubSub
@@ -61,7 +64,14 @@ object ArisDBRedisInGameFunction {
      * @param func (channel, message) -> void
      */
     @LuaFunction
-    fun subscribe(key: String, func: LuaFunc) {
+    fun subscribe(
+        key: String,
+        @LuaCallback(params = [
+            LuaCallbackParam("channel", luaType = LuaType.STRING),
+            LuaCallbackParam("message", luaType = LuaType.STRING)
+        ])
+        func: LuaFunc
+    ) {
         val active = AtomicBoolean(true)
         val pubSub = object: JedisPubSub() {
             override fun onMessage(channel: String?, message: String?) {
